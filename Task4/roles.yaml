@@ -1,0 +1,42 @@
+# ==============================================
+# Namespace Admin Role (полные права в namespace)
+# ==============================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: namespace-admin
+  namespace: default
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+
+---
+# ==============================================
+# Namespace Viewer Role (только чтение)
+# ==============================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: namespace-viewer
+  namespace: default
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["get", "list", "watch"]
+
+---
+# ==============================================
+# Security Auditor Role (глобальный доступ к секретам)
+# ==============================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: security-auditor
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+  - apiGroups: ["*"]
+    resources: ["events", "configmaps"]
+    verbs: ["get", "list"]

@@ -1,0 +1,51 @@
+# =====================================================
+# Привязка роли namespace-admin для пользователя dev-user
+# =====================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dev-user-binding
+  namespace: default
+subjects:
+- kind: User
+  name: dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: namespace-admin
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# ======================================================
+# Привязка роли namespace-viewer для пользователя manager-user
+# ======================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: manager-user-binding
+  namespace: default
+subjects:
+- kind: User
+  name: manager-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: namespace-viewer
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# ======================================================
+# Глобальная привязка роли security-auditor
+# ======================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: security-auditor-binding
+subjects:
+- kind: User
+  name: security-auditor
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: security-auditor
+  apiGroup: rbac.authorization.k8s.io
