@@ -1,5 +1,11 @@
 # Проверочный лист по безопасности данных для PropDevelopment
 
+## Диаграмма
+
+Ссылка на диаграмму - https://drive.google.com/file/d/1G0gkO4_U1M7VLuhR3WpJlAxFzcRL7flb/view?usp=sharing
+
+![mindmap](./mindmap.png)
+
 ## 1. Классификация данных по категориям
 
 | Категория данных       | Примеры данных в PropDevelopment                                                                 |
